@@ -18,9 +18,24 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-
-                    <h1>{{ $chart1->options['chart_title'] }}</h1>
-                    {!! $chart1->renderHtml() !!}
+                    <p>
+                        <label for="message-text" class="col-form-label">Fecha Desde:</label>
+                          <div class="input-group date" data-provide="datepicker" id="fechaIndicador">
+                            <input type="text" class="form-control">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>    
+                    </p>    
+                    <p>
+                        <label for="message-text" class="col-form-label">Fecha Hasta:</label>
+                          <div class="input-group date" data-provide="datepicker" id="fechaIndicador">
+                            <input type="text" class="form-control">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>    
+                    </p>    
 
                 </div>
 
@@ -28,8 +43,3 @@
         </div>
     </div>
 </div>
-
-@section('javascript')
-{!! $chart1->renderChartJsLibrary() !!}
-{!! $chart1->renderJs() !!}
-@endsection

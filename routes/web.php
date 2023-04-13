@@ -32,4 +32,5 @@ Route::controller(IndicadoresUf::class)->group(function (){
 
 Route::controller(GraficoController::class)->group(function (){
     Route::get('/graficoIndicadores', 'index');
+    Route::post('/verDatos', 'getAllIndicadores');
 });
