@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use LaravelDaily\LaravelCharts\Classes\LaravelChart;
+use App\Models\Indicadores;
+use Illuminate\Support\Facades\DB;
 
 class GraficoController extends Controller
 {
@@ -12,21 +13,16 @@ class GraficoController extends Controller
      */
     public function index(){
         
-        $chart_options = [
-            'chart_title' => 'Users by months',
-            'report_type' => 'group_by_date',
-            'model' => 'App\Models\User',
-            'group_by_field' => 'created_at',
-            'group_by_period' => 'month',
-            'chart_type' => 'bar',
-        ];
-        $chart1 = new LaravelChart($chart_options);
-        
-        return view('grafico', compact('chart1'));
-
+        return view('grafico');
     }
 
+    public function getAllIndicadores(Request $request){
+        
+        
+        $resultados = DB::select("SELECT `id`, `nombreIndicador`, `codigoIndicador`, `unidadMedidaIndicador`, `valorIndicador`, fechaIndicador FROM `historial_uf` 
+        WHERE `fechaIndicador` >= '".$request['fechaDesde']."' AND `fechaIndicador` <= '".$request['fechaHasta']."'");
 
+    }
 
    
 }
