@@ -18,9 +18,19 @@ class GraficoController extends Controller
 
     public function getAllIndicadores(Request $request){
         
+        if ( $request['fechaDesde'] != null || $request['fechaDesde']!= ""  ){
+
+            $resultados = DB::select("SELECT `id`, `nombreIndicador`, `codigoIndicador`, `unidadMedidaIndicador`, `valorIndicador`, fechaIndicador FROM `historial_uf` 
+            WHERE `fechaIndicador` >= '".$request['fechaDesde']."' AND `fechaIndicador` <= '".$request['fechaHasta']."'");
+
+        }else{
+
+            $resultados = DB::select("SELECT `id`, `nombreIndicador`, `codigoIndicador`, `unidadMedidaIndicador`, `valorIndicador`, fechaIndicador FROM `historial_uf`");
+
+        }
         
-        $resultados = DB::select("SELECT `id`, `nombreIndicador`, `codigoIndicador`, `unidadMedidaIndicador`, `valorIndicador`, fechaIndicador FROM `historial_uf` 
-        WHERE `fechaIndicador` >= '".$request['fechaDesde']."' AND `fechaIndicador` <= '".$request['fechaHasta']."'");
+        // $resultados = DB::select("SELECT * FROM `historial_uf`");
+        return response()->json($resultados);
 
     }
 

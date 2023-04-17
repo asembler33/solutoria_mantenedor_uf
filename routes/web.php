@@ -23,6 +23,10 @@ Route::get('/mantenedor-uf', function () {
     return view('mantenedor_uf');
 });
 
+Route::get('/menu', function () {
+    return view('menu_principal');
+});
+
 Route::controller(IndicadoresUf::class)->group(function (){
     Route::get('/obtenerDataIndicadores', 'index');
     Route::post('/grabarIndicador', 'store');
@@ -32,5 +36,6 @@ Route::controller(IndicadoresUf::class)->group(function (){
 
 Route::controller(GraficoController::class)->group(function (){
     Route::get('/graficoIndicadores', 'index');
-    Route::post('/verDatos', 'getAllIndicadores');
+    Route::get('/verDatos', 'getAllIndicadores');
+    Route::post('/procesarGrafico', 'getAllIndicadores');
 });
